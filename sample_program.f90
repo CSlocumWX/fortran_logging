@@ -21,6 +21,12 @@ program sample_program
     call logging%debug("This won't print to the terminal")
     call logging%info("This will be the first thing for this section")
     call logging%warn("We will still output warnings")
-    call logging%error("This will be logged to stderr and the program will exit")
-    call logging%fatal("We won't get to this since we stopped")
+    call logging%error("This will be logged to stderr")
+    call logging%fatal("stop the program")
+    ! write to files instead
+    call logging_init(unit_output=900, unit_error=800)
+    call logging%info("Messages to log file")
+    call logging%debug("Test debug to file")
+    call logging%error("Error message to error file")
+    call logging%fatal("stop the program")
 end program sample_program
