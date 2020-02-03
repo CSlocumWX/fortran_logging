@@ -250,16 +250,17 @@ contains
         end if
         if (present(log_module) .and. present(log_proc)) then
             write(output_pipe, output_fmt) message_type, &
-                time_output, " | "//log_module//" | "//log_proc//" | "//message
+                time_output, " | "//log_module//" | "//log_proc//" | "&
+                //trim(adjustl(message))
         else if (present(log_module)) then
             write(output_pipe, output_fmt) message_type, &
-                time_output, " | "//log_module//" | "//message
+                time_output, " | "//log_module//" | "//trim(adjustl(message))
         else if (present(log_proc)) then
             write(output_pipe, output_fmt) message_type, &
-                time_output, " | "//log_proc//" | "//message
+                time_output, " | "//log_proc//" | "//trim(adjustl(message))
         else
             write(output_pipe, output_fmt) message_type, &
-                time_output, " | "//message
+                time_output, " | "//trim(adjustl(message))
         end if
         if (open_file) then
             close(output_pipe)
